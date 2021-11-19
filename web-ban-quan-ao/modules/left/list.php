@@ -1,6 +1,5 @@
 <?php
-$sql_loai = "select * from loaisp order by idloaisp asc";
-$row_loai = mysqli_query($conn, $sql_loai);
+
 ?>
 <div class="box_list">
 	<div class="tieude">

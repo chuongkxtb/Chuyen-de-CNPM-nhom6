@@ -139,4 +139,11 @@ input{
 	color:#fff;
 	font-size:15px;
 }
-
+.success{
+	font-size: 20px;
+	color: green;
+}
+.error{
+	font-size: 20px;
+	color: red;
+}

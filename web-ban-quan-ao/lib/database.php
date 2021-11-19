@@ -1,5 +1,6 @@
 <?php
-    include '../admincp/modules/config.php';
+    include 'modules/config.php';
+
 ?>
 <?php
 Class Database{

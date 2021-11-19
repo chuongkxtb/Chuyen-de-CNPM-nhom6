@@ -37,6 +37,3 @@
         <a href=""><img src="slider/images/slider-3.png" alt=""></a>
     </div>
 </div>
-<div class="slider-img">
-    <img src="slider/images/slider-3.png" alt="">
-</div>
