@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +15,7 @@
 .header {
   width: 100%;
 }
-.header a img {
+.header > a > img {
   float: left;
   margin-left: 50px;
   max-height: 55px;
@@ -26,20 +25,20 @@
   display: flex;
 }
 .lg-lu a {
-	text-decoration: none;
-	padding: 0 20px;
-	line-height: 55px;
-	transition: all 0.2s;
-	color: black;
+  text-decoration: none;
+  padding: 0 20px;
+  line-height: 55px;
+  transition: all 0.2s;
+  color: black;
 }
 .lg-lu a:hover {
-	background-color: #99d9ee;
-	color: white;
+  background-color: #99d9ee;
+  color: white;
 }
 .menu {
   width: 100%;
   height: 40px;
-  background:#0c9;
+  background: #16a085;
 }
 .menu ul {
   width: 100%;
@@ -55,12 +54,14 @@
 }
 .menu ul li a {
   text-decoration: none;
-  color: #cccccc;
-  font-size: 18px;
+  color: #ecf0f1;
+  font-size: 20px;
   display: block;
+  font-weight: 700;
+  transition: all 0.25s;
 }
-.menu ul li:hover a{
-  color: rgb(211, 26, 66);
+.menu ul li:hover a {
+  color: #f1c40f;
 }
 
 .content {
@@ -68,6 +69,10 @@
   height: auto;
 
   margin-top: 2px;
+}
+.content_right .tieude {
+  background-color: #16a085;
+  line-height: 32px;
 }
 .content_left {
   width: 20%;
@@ -125,9 +130,20 @@
   padding: 5px;
   color: #333;
   line-height: 40px;
+  font-weight: 600;
+  transition: all 0.25s;
 }
 .tieude:hover {
-  color: lightseagreen;
+  color: #badc58;
+}
+.box_list .tieude {
+  line-height: 32px;
+}
+.box_list .tieude h3 {
+  margin: 0;
+}
+.box_list .tieude:hover {
+  color: #f1c40f;
 }
 .box_list {
   width: 98%;
@@ -138,12 +154,11 @@
   width: 100%;
   height: 100%;
   list-style: none;
+  margin-bottom: 0;
 }
 .list li {
   width: auto;
-  height: 20px;
-  padding-left: 10px;
-  padding-top: 5px;
+  height: 100%;
 }
 .list li a {
   text-decoration: none;
@@ -151,8 +166,8 @@
   display: block;
   text-align: center;
 }
-.list li:hover a{
-	color: lightskyblue;
+.list li:hover a {
+  color: red;
 }
 .content_right {
   width: 79%;
@@ -183,12 +198,10 @@
 }
 .product a {
   text-decoration: none;
+  display: block;
 }
-.product li img {
-	background-color: gainsboro;
-}
-.product li:hover img{
-	background-color: gray;
+.product li:hover {
+  background-color: gainsboro;
 }
 .product p {
   padding-top: 2px;
@@ -399,8 +412,11 @@
 .scroll-to-top {
   display: fixed;
 }
-.content .slider{
-  margin:  0px auto;
+.content .slider {
+  margin: 0px auto;
   text-align: center;
   max-width: 90%;
+}
+.slider-img img {
+  width: 100%;
 }

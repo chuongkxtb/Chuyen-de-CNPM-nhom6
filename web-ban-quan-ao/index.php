@@ -5,12 +5,15 @@
 	<link rel="stylesheet" href="reset.css">
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="slider/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="slider/owlcarousel/assets/owl.theme.default.min.css">
+    <script src="slider/jquery.min.js"></script>
+    <script src="slider/owlcarousel/owl.carousel.min.js"></script>
 	<title>Website bán quần áo</title>
-
 </head>
 
 <body>
-		<div class="wrapper">
+	<div class="wrapper">
 		<?php
 		include('admincp/modules/config.php');
 		include('modules/header.php');

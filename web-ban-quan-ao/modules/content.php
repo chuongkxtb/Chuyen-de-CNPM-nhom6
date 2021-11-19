@@ -1,5 +1,4 @@
   <div class="content">
-	  <div class="slider"><img src="slider/images/slider_3.jpg" alt=""></div>
   	<div class="content_left">
   		<?php
 			include('modules/left/list.php');
