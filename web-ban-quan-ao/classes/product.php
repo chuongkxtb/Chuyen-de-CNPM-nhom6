@@ -1,8 +1,11 @@
 <?php
-    include '../../lib1/database.php';
-    include '../../helpers/format.php';
+    $filepath = realpath(dirname(__FILE__));
+
+    include_once ($filepath.'/../lib/database.php');
+    include_once ($filepath.'/../helpers/format.php');
 
 ?>
+
 <?php
     class product
     {
@@ -101,5 +104,17 @@
             $result = $this->db->delete($query);
             return $result;
         }
+// END ADMIN
+        public function product_ft(){
+            $query = "SELECT * FROM sanpham WHERE type='1'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+        public function product_new(){
+            $query = "SELECT * FROM sanpham order by idsanpham desc limit 4";
+            $result = $this->db->select($query);
+            return $result;
+        }
+     
     }
 ?>
