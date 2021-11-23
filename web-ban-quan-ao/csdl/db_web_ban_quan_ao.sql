@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 29, 2021 lúc 11:22 AM
+-- Thời gian đã tạo: Th10 23, 2021 lúc 09:34 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.10
+-- Phiên bản PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,8 +38,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`idadmin`, `username`, `password`) VALUES
-(1, 'admin', 'hieuadmin'),
-(2, 'ad', '123');
+(3, 'admin', '202cb962ac59075b964b07152d234b70'),
+(4, 'ad', '202cb962ac59075b964b07152d234b70');
 
 -- --------------------------------------------------------
 
@@ -121,18 +121,6 @@ INSERT INTO `dangky` (`id_khachhang`, `tenkhachhang`, `email`, `matkhau`, `dient
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `gallery`
---
-
-CREATE TABLE `gallery` (
-  `id_gallery` int(11) NOT NULL,
-  `id_sp` int(11) NOT NULL,
-  `hinhanhsp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `hieusp`
 --
 
@@ -151,7 +139,7 @@ INSERT INTO `hieusp` (`idhieusp`, `tenhieusp`, `tinhtrang`) VALUES
 (16, 'Nike', '1'),
 (17, 'Gucci', '1'),
 (18, 'Hermes', '1'),
-(19, 'Chanel', '1');
+(19, 'Chanel', '2');
 
 -- --------------------------------------------------------
 
@@ -191,38 +179,27 @@ CREATE TABLE `sanpham` (
   `giadexuat` float NOT NULL,
   `giagiam` float NOT NULL,
   `soluong` int(11) NOT NULL,
-  `loaisp` int(11) NOT NULL,
-  `nhasx` int(11) NOT NULL,
+  `idloaisp` int(11) NOT NULL,
+  `idhieusp` int(11) NOT NULL,
   `tinhtrang` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `noidung` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
+  `noidung` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `type` int(11) NOT NULL,
+  `created` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`idsanpham`, `tensp`, `masp`, `hinhanh`, `giadexuat`, `giagiam`, `soluong`, `loaisp`, `nhasx`, `tinhtrang`, `noidung`) VALUES
-(90, 'Áo phông - Adidas', 'P-01', 'ao-phong-adidas-2.jpg', 1000000, 950000, 1, 26, 15, '1', ''),
-(91, 'Mũ lưỡi trai - Nike', 'LT-01', 'mu-luoi-trai-nike.jpg', 800000, 800000, 1, 31, 16, '1', ''),
-(92, 'Quần Jean - Gucci', 'J-01', 'quan-jean-gucci.jpg', 1200000, 1100000, 1, 27, 17, '1', ''),
-(93, 'Áo len - Chanel', 'C-01', 'ao-len-1.jpg', 1500000, 1500000, 1, 29, 19, '1', ''),
-(94, 'Áo khoác - Hermes', 'H-01', 'ao-khoac.jpg', 2000000, 1850000, 1, 28, 18, '1', ''),
-(95, 'áo phông', 'p-01', 'ao-phong.gif', 1000000, 1000000, 1, 26, 15, '1', '');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tintuc`
---
-
-CREATE TABLE `tintuc` (
-  `idtintuc` int(11) NOT NULL,
-  `tentintuc` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `matin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `hinhanh` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `noidung` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `tinhtrang` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `sanpham` (`idsanpham`, `tensp`, `masp`, `hinhanh`, `giadexuat`, `giagiam`, `soluong`, `idloaisp`, `idhieusp`, `tinhtrang`, `noidung`, `type`, `created`) VALUES
+(90, 'Áo phông - Adidas', 'P-01', 'ao-phong-adidas-2.jpg', 1000000, 950000, 1, 26, 15, '1', '', 1, '2021-11-22'),
+(91, 'Mũ lưỡi trai - Nike', 'LT-01', 'mu-luoi-trai-nike.jpg', 800000, 800000, 1, 31, 16, '1', '', 1, NULL),
+(92, 'Quần Jean - Gucci', 'J-01', 'quan-jean-gucci.jpg', 1200000, 1100000, 1, 27, 17, '1', '', 1, NULL),
+(93, 'Áo len - Chanel', 'C-01', 'ao-len-1.jpg', 1500000, 1500000, 1, 29, 19, '1', '', 1, NULL),
+(94, 'Áo khoác - Hermes', 'H-01', 'ao-khoac.jpg', 2000000, 1850000, 1, 28, 18, '1', '', 0, NULL),
+(95, 'áo phông', 'p-01', 'ao-phong.jpg', 1000000, 1000000, 1, 26, 15, '1', '', 0, NULL),
+(107, 'áo phông', 'p-01', 'ao-len-1.jpg', 1000000, 0, 1, 0, 0, '', '', 0, NULL),
+(108, 'áo phông', 'p-01', 'ao-phong-gucci.jpg', 1000000, 0, 1, 0, 0, '', '', 0, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -253,12 +230,6 @@ ALTER TABLE `dangky`
   ADD PRIMARY KEY (`id_khachhang`);
 
 --
--- Chỉ mục cho bảng `gallery`
---
-ALTER TABLE `gallery`
-  ADD PRIMARY KEY (`id_gallery`);
-
---
 -- Chỉ mục cho bảng `hieusp`
 --
 ALTER TABLE `hieusp`
@@ -277,12 +248,6 @@ ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`idsanpham`);
 
 --
--- Chỉ mục cho bảng `tintuc`
---
-ALTER TABLE `tintuc`
-  ADD PRIMARY KEY (`idtintuc`);
-
---
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -290,7 +255,7 @@ ALTER TABLE `tintuc`
 -- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `cart`
@@ -311,34 +276,22 @@ ALTER TABLE `dangky`
   MODIFY `id_khachhang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
--- AUTO_INCREMENT cho bảng `gallery`
---
-ALTER TABLE `gallery`
-  MODIFY `id_gallery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
-
---
 -- AUTO_INCREMENT cho bảng `hieusp`
 --
 ALTER TABLE `hieusp`
-  MODIFY `idhieusp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idhieusp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisp`
 --
 ALTER TABLE `loaisp`
-  MODIFY `idloaisp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idloaisp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `idsanpham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
-
---
--- AUTO_INCREMENT cho bảng `tintuc`
---
-ALTER TABLE `tintuc`
-  MODIFY `idtintuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idsanpham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
