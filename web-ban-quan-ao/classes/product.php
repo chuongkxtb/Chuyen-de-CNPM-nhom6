@@ -115,6 +115,13 @@
             $result = $this->db->select($query);
             return $result;
         }
-     
+     public function product_detail($id){
+         $query = "SELECT sanpham.*,loaisp.tenloaisp,hieusp.tenhieusp 
+                    FROM sanpham INNER JOIN loaisp ON sanpham.idloaisp=loaisp.idloaisp 
+                    INNER JOIN hieusp ON sanpham.idhieusp=hieusp.idhieusp WHERE sanpham.idsanpham='$id'";
+        // $query = "SELECT * FROM sanpham WHERE idsanpham='$id'";
+         $result = $this->db->select($query);
+         return $result;
+     }
     }
 ?>
