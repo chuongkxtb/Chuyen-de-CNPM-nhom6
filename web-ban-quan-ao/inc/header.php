@@ -14,6 +14,7 @@ Session::init();
    $cat = new category();
    $br = new brand();
    $pd = new product();
+   $ct = new cart();
 ?>
 <?php
 header("Cache-Control: no-cache, must-revalidate");

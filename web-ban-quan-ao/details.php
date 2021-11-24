@@ -1,6 +1,6 @@
 <?php
 	include 'inc/header.php';
-	include 'inc/slider.php';
+
 ?>
 <?php
 	if (!isset($_GET['idsp']) || $_GET['idsp'] == NULL) {
@@ -8,7 +8,14 @@
 	  } else {
 		$id = $_GET['idsp'];
 	  }
+	  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	  // The request is using the POST method
+	  {
+		$quantity = $_POST['quantity'];
 
+	  
+		$cart_insert = $ct->cart_insert($id,$quantity);
+	  }
 ?>
  <div class="main">
     <div class="content">
@@ -33,9 +40,9 @@
 						<p>Brand:<span><?php echo $result_detail['tenhieusp']?></span></p>
 					</div>
 				<div class="add-cart">
-					<form action="cart.php" method="post">
-						<input type="number" class="buyfield" name="" value="1"/>
-						<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
+					<form action="" method="post">
+						<input type="number" class="buyfield" name="quantity" value="1" min="1"/>
+						<input type="submit" class="buysubmit" name="" value="Buy Now"/>
 					</form>				
 				</div>
 			</div>
@@ -51,8 +58,19 @@
 				<div class="rightsidebar span_3_of_1">
 					<h2>CATEGORIES</h2>
 					<ul>
-						<li><a href="productbycat.php">Mobile Phones</a></li>
-						
+						<?php
+							$cat_show = $cat->show_category();
+							if($cat_show){
+								while($result_cat=$cat_show->fetch_assoc())
+								{
+
+							
+						?>
+						<li><a href="productbycat.php"><?php echo $result_cat['tenloaisp']?></a></li>
+						<?php
+								}
+							}
+						?>
     				</ul>
     	
  				</div>

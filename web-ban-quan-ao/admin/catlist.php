@@ -31,9 +31,9 @@ if (isset($_GET['delid'])) {
 					<?php
 					$show_cat = $cat->show_category();
 					if ($show_cat) {
-						$i = 0;
+						
 						while ($result = $show_cat->fetch_assoc()) {
-							$i++;
+							
 
 					?>
 							<tr>
