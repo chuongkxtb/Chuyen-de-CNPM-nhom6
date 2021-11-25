@@ -15,18 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="grid_10">
   <div class="box round first grid">
     <h2>Thêm sản phẩm mới</h2>
+  
     <div class="block">
-      <?php
+    <?php
       if (isset($insertProduct)) {
         echo $insertProduct;
       }
       ?>
 
-      <form action="productadd.php" method="post" enctype="multipart/form-data">
-        <h3>&nbsp;</h3>
+      <form action=" " method="post" enctype="multipart/form-data">
         <table width="600" border="1">
           <tr>
             <td colspan="2" style="text-align:center;font-size:25px;">Thêm sản phẩm</td>
+   
           </tr>
           <tr>
             <td width="97">Tên sản phẫm</td>
@@ -44,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <td>Giá đề xuất</td>
             <td><input type="text" name="giadexuat"></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>Giá giảm</td>
             <td><input type="text" name="giagiam"></td>
-          </tr>
+          </tr> -->
           <tr>
             <td>Nội dung</td>
             <td><textarea name="noidung" cols="40" rows="10"></textarea></td>
@@ -112,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <tr>
             <td colspan="2">
               <div align="center">
-                <input type="submit" name="them" value="Thêm sản phẩm">
+                <input type="submit" name="submit" value="Thêm sản phẩm">
               </div>
             </td>
           </tr>

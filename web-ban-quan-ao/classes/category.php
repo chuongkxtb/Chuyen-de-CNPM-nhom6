@@ -24,7 +24,7 @@
             $status= mysqli_real_escape_string($this->db->link,$status);
 
             if(empty($namecat)){
-                $alert = "Không được để trống";
+                $alert = "<span class = 'error'>Không được để trống </span>";
                 return $alert;
             }else{
                 $query = "INSERT INTO loaisp(tenloaisp,tinhtrang) VALUES ('$namecat','$status')";

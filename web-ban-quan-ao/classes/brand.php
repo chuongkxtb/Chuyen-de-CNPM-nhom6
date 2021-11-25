@@ -24,7 +24,7 @@
             $status= mysqli_real_escape_string($this->db->link,$status);
 
             if(empty($namebr)){
-                $alert = "Không được để trống";
+                $alert = "<span class = 'error'>Không được để trống </span>";
                 return $alert;
             }else{
                 $query = "INSERT INTO hieusp(tenhieusp,tinhtrang) VALUES ('$namebr','$status')";

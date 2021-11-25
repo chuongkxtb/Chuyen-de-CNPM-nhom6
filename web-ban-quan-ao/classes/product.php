@@ -18,7 +18,7 @@
 
         }
         public function insert_product($data,$files){
-         
+            
 
             $tensp= mysqli_real_escape_string($this->db->link,$data['tensp']);
             $masp= mysqli_real_escape_string($this->db->link,$data['masp']);
@@ -31,13 +31,11 @@
 
             $giadexuat= mysqli_real_escape_string($this->db->link,$data['giadexuat']);
             // $giamgia= mysqli_real_escape_string($this->db->link,$data['giamgia']);
-           
             $soluong= mysqli_real_escape_string($this->db->link,$data['soluong']);
-            
-        
             $noidung= mysqli_real_escape_string($this->db->link,$data['noidung']);
-            if($tensp==""){
-                $alert = "Không được để trống";
+
+            if($tensp=="" || $masp=="" || $giadexuat=="" || $soluong=="" || $noidung==""){
+                $alert = "<span class = 'error'>Không được để trống </span>";
                 return $alert;
             }else{
                 move_uploaded_file($hinhanh_tmp,'uploads/'.$hinhanh);
