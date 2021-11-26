@@ -22,7 +22,7 @@
 			  ?>
 				<div class="grid_1_of_4 images_1_of_4">
 				
-					 <a href="details.php"><img src="images/<?php echo $result['hinhanh']?>" alt="" /></a>
+					 <a href="details.php?idsp=<?php echo $result['idsanpham']?>"><img src="images/<?php echo $result['hinhanh']?>" alt="" /></a>
 					 <h2><?php echo $result['tensp']?></h2>
 					 <p><?php echo $fm->textShorten($result['noidung'],20)?></p>
 					 <p><span class="price"><?php echo $result['giadexuat']?></span></p>
@@ -48,7 +48,7 @@
 
 			  ?>
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="details.php"><img src="images/<?php echo $result['hinhanh']?>" alt="" /></a>
+					 <a href="details.php?idsp=<?php echo $result['idsanpham']?>"><img src="images/<?php echo $result['hinhanh']?>" alt="" /></a>
 					 <h2><?php echo $result['tensp']?> </h2>
 					 <p><?php echo $fm->textShorten($result['noidung'],20)?></p>
 					 <p><span class="price"><?php echo $result['giadexuat']?></span></p>
