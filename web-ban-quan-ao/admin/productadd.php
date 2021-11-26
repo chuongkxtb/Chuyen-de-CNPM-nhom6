@@ -18,17 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   
     <div class="block">
     <?php
-      if (isset($insertProduct)) {
-        echo $insertProduct;
-      }
-      ?>
+        if (isset($insertproduct)) {
+            echo $insertproduct;
+        }
+
+        ?>
 
       <form action=" " method="post" enctype="multipart/form-data">
-        <table width="600" border="1">
-          <tr>
+
+        <table width="600" border="1" >
+          <tr >
             <td colspan="2" style="text-align:center;font-size:25px;">Thêm sản phẩm</td>
    
-          </tr>
+          </tr >
           <tr>
             <td width="97">Tên sản phẫm</td>
             <td width="87"><input type="text" name="tensp"></td>
@@ -45,15 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <td>Giá đề xuất</td>
             <td><input type="text" name="giadexuat"></td>
           </tr>
-          <!-- <tr>
+          <tr>
             <td>Giá giảm</td>
             <td><input type="text" name="giagiam"></td>
-          </tr> -->
-          <tr>
-            <td>Nội dung</td>
-            <td><textarea name="noidung" cols="40" rows="10"></textarea></td>
           </tr>
-          <tr>
+       
             <td>Số lượng</td>
             <td><input type="text" name="soluong"></td>
           </tr>
@@ -85,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <label>Brand</label>
             </td>
             <td>
-              <select id="select" name="brand">
+              <select id="select" name="hieusp">
                 <option>------Select Brand------</option>
                 <?php
                 $brand = new brand();
@@ -103,11 +101,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </td>
           </tr>
           <tr>
+            <td>Nội dung</td>
+            <td><textarea name="noidung" cols="40" rows="10"></textarea></td>
+          </tr>
+          <tr>
+          <tr>
             <td>Tình trạng</td>
             <td><select name="tinhtrang">
 
-                <option value="1">Kích hoạt</option>
-                <option value="2">Không kích hoạt</option>
+                <option value="1">Đặc trưng</option>
+                <option value="2">Không đặc trưng</option>
               </select></td>
           </tr>
           <tr>

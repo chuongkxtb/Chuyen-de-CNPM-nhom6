@@ -30,17 +30,22 @@
 
 
             $giadexuat= mysqli_real_escape_string($this->db->link,$data['giadexuat']);
-            // $giamgia= mysqli_real_escape_string($this->db->link,$data['giamgia']);
+            $giamgia= mysqli_real_escape_string($this->db->link,$data['giagiam']);
             $soluong= mysqli_real_escape_string($this->db->link,$data['soluong']);
+            $loaisp = mysqli_real_escape_string($this->db->link,$data['loaisp']);
+            $hieusp = mysqli_real_escape_string($this->db->link,$data['hieusp']);
+            $tinhtrang = mysqli_real_escape_string($this->db->link,$data['tinhtrang']);
+
             $noidung= mysqli_real_escape_string($this->db->link,$data['noidung']);
 
             if($tensp=="" || $masp=="" || $giadexuat=="" || $soluong=="" || $noidung==""){
                 $alert = "<span class = 'error'>Không được để trống </span>";
                 return $alert;
             }else{
+      
                 move_uploaded_file($hinhanh_tmp,'uploads/'.$hinhanh);
-                $query = "INSERT INTO sanpham(tensp,masp,hinhanh,giadexuat,soluong,noidung) 
-                                      VALUES ('$tensp','$masp','$hinhanh','$giadexuat','$soluong','$noidung')";
+                $query = "INSERT INTO sanpham(tensp,masp,hinhanh,giadexuat,giagiam,soluong,idloaisp,idhieusp,noidung,tinhtrang) 
+                                      VALUES ('$tensp','$masp','$hinhanh','$giadexuat','$giamgia','$soluong','$loaisp','$hieusp','$noidung','$tinhtrang')";
                 $result = $this->db->insert($query);
                 if($result)
                 {
@@ -54,7 +59,9 @@
             }
         }
         public function show_product(){
-            $query = "SELECT * FROM sanpham order by idsanpham desc";
+            $query = "SELECT sanpham.*,loaisp.tenloaisp,hieusp.tenhieusp 
+            FROM sanpham INNER JOIN loaisp ON sanpham.idloaisp=loaisp.idloaisp 
+            INNER JOIN hieusp ON sanpham.idhieusp=hieusp.idhieusp order by idsanpham desc";
             $result = $this->db->select($query);
             return $result;
         }
@@ -97,7 +104,7 @@
                 }
             }
         }
-        public function delete_category($id){
+        public function delete_product($id){
             $query = "DELETE FROM sanpham WHERE idsanpham='$id'";
             $result = $this->db->delete($query);
             return $result;

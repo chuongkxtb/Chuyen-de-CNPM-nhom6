@@ -59,7 +59,7 @@ header("Cache-Control: max-age=2592000");
                     </div>
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
-                            <li>Hello <?php echo Session::get('adminName') ?></li>
+                            <li>Hello <?php echo Session::get('username') ?></li>
                             <?php
                             if (isset($_GET['action']) && $_GET['action'] == 'logout')
                                 Session::destroy();
