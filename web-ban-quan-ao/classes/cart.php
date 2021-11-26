@@ -25,8 +25,6 @@
             $sid = session_id();
 
 
-     
-               
             $query = "SELECT * FROM sanpham WHERE idsanpham='$id'";
             $result = $this->db->select($query)->fetch_assoc();
 
@@ -39,10 +37,8 @@
                 $result_insert = $this->db->insert($query_insert);
                 if($result_insert)
                 {
-                    header("Location:cart.php");
-                }else{
-                    header("Location:index.php");
-
+                    $msg = "<span  style ='color:green; font-size: 20px;'>Thêm sản phẩm thành công</span>";
+					return $msg;
                 }
 
             }
@@ -52,7 +48,12 @@
                 $result = $this->db->select($query);
                 return $result;
             }
-        
+            public function check_cart(){
+                $sId = session_id();
+                $query = "SELECT * FROM cart_detail WHERE sId = '$sId'";
+                $result = $this->db->select($query);
+                return $result;
+            }
         public function cart_update($idcart,$quantity){
 
             $idcart= mysqli_real_escape_string($this->db->link,$idcart);
@@ -70,6 +71,16 @@
                 }
                
         }
+        public function del_product_cart($cartid){
+			$cartid = mysqli_real_escape_string($this->db->link, $cartid);
+			$query = "DELETE FROM cart_detail WHERE idcart = '$cartid'";
+			$result = $this->db->delete($query);
+			if($result){
+				$msg = "<span class='error'>Xóa sản phẩm thành công</span>";
+				return $msg;
+			
+			}
+		}
   
     }
 ?>

@@ -61,7 +61,7 @@
         public function show_product(){
             $query = "SELECT sanpham.*,loaisp.tenloaisp,hieusp.tenhieusp 
             FROM sanpham INNER JOIN loaisp ON sanpham.idloaisp=loaisp.idloaisp 
-            INNER JOIN hieusp ON sanpham.idhieusp=hieusp.idhieusp order by idsanpham desc";
+            INNER JOIN hieusp ON sanpham.idhieusp=hieusp.idhieusp order by giadexuat desc";
             $result = $this->db->select($query);
             return $result;
         }

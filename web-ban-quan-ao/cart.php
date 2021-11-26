@@ -3,7 +3,10 @@
 	
  ?>
  <?php
-
+if(isset($_GET['cartid'])){
+	$cartid = $_GET['cartid']; 
+	$delcart = $ct->del_product_cart($cartid);
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  
 	$quantity = $_POST['quantity'];
@@ -12,11 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$update_quantity = $ct->cart_update($idcart,$quantity);
 }
 ?>
+
  <div class="main">
     <div class="content">
     	<div class="cartoption">		
 			<div class="cartpage">
-			    	<h2>Your Cart</h2>
+			    	<h2>Giỏ hàng </h2>
 					<?php
 						if(isset($update_quantity)){
 							echo $update_quantity;
@@ -24,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					?>
 						<table class="tblone">
 							<tr>
-								<th width="20%">Product Name</th>
-								<th width="10%">Image</th>
-								<th width="15%">Price</th>
-								<th width="25%">Quantity</th>
-								<th width="20%">Total Price</th>
+								<th width="20%">Tên</th>
+								<th width="10%">Ảnh</th>
+								<th width="15%">Giá</th>
+								<th width="25%">Số lượng</th>
+								<th width="20%">Tổng giá</th>
 								<th width="10%">Action</th>
 							</tr>
 							<?php
@@ -55,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						    	$t = $result["price"]*$result["quantity"];
 
 								echo $t; ?></td>
-								<td><a href="">X</a></td>
+								<td><a onclick="return confirm('Bạn có muốn xóa không?');" href="?cartid=<?php echo $result['idcart'] ?>">Xóa</a></td>
 							</tr>
 							
 							<?php
@@ -67,6 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							}
 							?>
 						</table>
+						<?php
+							$check_cart = $ct->check_cart();
+								if($check_cart){
+								?>
 						<table style="float:right;text-align:left;" width="40%">
 							<tr>
 								<th>Sub Total : </th>
@@ -84,15 +92,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							echo $grand_total; ?></td>
 							</tr>
 					   </table>
+					   <?php
+					}else{
+						echo 'Your Cart is Empty ! Please Shopping Now';
+					}
+					  ?>
 					</div>
-					<div class="shopping">
+					<!-- <div class="shopping">
 						<div class="shopleft">
 							<a href="index.php"> <img src="images/shop.png" alt="" /></a>
 						</div>
 						<div class="shopright">
 							<a href="login.php"> <img src="images/check.png" alt="" /></a>
 						</div>
-					</div>
+					</div> -->
     	</div>  	
        <div class="clear"></div>
     </div>

@@ -48,7 +48,7 @@ header("Cache-Control: max-age=2592000");
   <div class="wrap">
 		<div class="header_top">
 			<div class="logo">
-				<a href="index.php"><img style="height: 50px;" src="images/logo.jpg" alt="" /></a>
+				<a href="index.php"><img style="height: 70px;" src="images/logo.jpg" alt="" /></a>
 			</div>
 			  <div class="header_top_right">
 			    <div class="search_box">
@@ -119,7 +119,7 @@ header("Cache-Control: max-age=2592000");
 
 	        </ul>
 	    </li>
-	  <li><a href="cart.php">Giỏ Hàng</a></li>
+	  <li><a href="cart.php"> Giỏ Hàng</a></li>
 	 
 	  <div class="clear"></div>
 	</ul>

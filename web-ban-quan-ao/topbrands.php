@@ -1,6 +1,6 @@
 <?php
 	include 'inc/header.php';
-	include 'inc/slider.php';
+	
 ?>
 <?php
 	if(!isset($_GET['brandid']) || $_GET['brandid']==NULL){
