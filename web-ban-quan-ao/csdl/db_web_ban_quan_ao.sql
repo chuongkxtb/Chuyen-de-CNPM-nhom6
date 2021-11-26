@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 23, 2021 lúc 09:34 AM
+-- Thời gian đã tạo: Th10 26, 2021 lúc 05:52 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -70,9 +70,11 @@ INSERT INTO `cart` (`id`, `fullname`, `createdate`) VALUES
 --
 
 CREATE TABLE `cart_detail` (
-  `id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL DEFAULT 1,
+  `idcart` int(11) NOT NULL,
+  `idsanpham` int(11) NOT NULL DEFAULT 1,
+  `sid` varchar(255) NOT NULL,
+  `name_sp` varchar(255) NOT NULL,
+  `image` varchar(100) CHARACTER SET utf32 COLLATE utf32_vietnamese_ci NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -81,13 +83,10 @@ CREATE TABLE `cart_detail` (
 -- Đang đổ dữ liệu cho bảng `cart_detail`
 --
 
-INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `quantity`, `price`) VALUES
-(32, 20, 90, 1, '1000000'),
-(33, 20, 92, 5, '1100000'),
-(34, 22, 93, 7, '1500000'),
-(35, 22, 92, 5, '1200000'),
-(36, 21, 91, 1, '800000'),
-(37, 23, 94, 1, '2000000');
+INSERT INTO `cart_detail` (`idcart`, `idsanpham`, `sid`, `name_sp`, `image`, `quantity`, `price`) VALUES
+(79, 90, '88neg79lcbh7i8q8rkr0u402r2', 'Áo phông - Adidas', 'ao-phong-adidas-2.jpg', 1, '1000000'),
+(80, 92, '88neg79lcbh7i8q8rkr0u402r2', 'Áo len', 'aosomi.jpg', 1, '1200000'),
+(84, 91, '88neg79lcbh7i8q8rkr0u402r2', 'Mũ lưỡi trai - Nike', 'mu-luoi-trai-nike.jpg', 1, '800000');
 
 -- --------------------------------------------------------
 
@@ -192,14 +191,14 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`idsanpham`, `tensp`, `masp`, `hinhanh`, `giadexuat`, `giagiam`, `soluong`, `idloaisp`, `idhieusp`, `tinhtrang`, `noidung`, `type`, `created`) VALUES
-(90, 'Áo phông - Adidas', 'P-01', 'ao-phong-adidas-2.jpg', 1000000, 950000, 1, 26, 15, '1', '', 1, '2021-11-22'),
-(91, 'Mũ lưỡi trai - Nike', 'LT-01', 'mu-luoi-trai-nike.jpg', 800000, 800000, 1, 31, 16, '1', '', 1, NULL),
-(92, 'Quần Jean - Gucci', 'J-01', 'quan-jean-gucci.jpg', 1200000, 1100000, 1, 27, 17, '1', '', 1, NULL),
+(90, 'Áo phông - Adidas', 'P-01', 'ao-phong-adidas-2.jpg', 1000000, 950000, 1, 26, 15, '1', 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 1, '2021-11-22'),
+(91, 'Mũ lưỡi trai - Nike', 'LT-01', 'mu-luoi-trai-nike.jpg', 800000, 800000, 1, 31, 16, '1', 'abc', 1, NULL),
+(92, 'Áo len', 'J-01', 'aosomi.jpg', 1200000, 1100000, 1, 27, 17, '1', '', 1, NULL),
 (93, 'Áo len - Chanel', 'C-01', 'ao-len-1.jpg', 1500000, 1500000, 1, 29, 19, '1', '', 1, NULL),
 (94, 'Áo khoác - Hermes', 'H-01', 'ao-khoac.jpg', 2000000, 1850000, 1, 28, 18, '1', '', 0, NULL),
-(95, 'áo phông', 'p-01', 'ao-phong.jpg', 1000000, 1000000, 1, 26, 15, '1', '', 0, NULL),
-(107, 'áo phông', 'p-01', 'ao-len-1.jpg', 1000000, 0, 1, 0, 0, '', '', 0, NULL),
-(108, 'áo phông', 'p-01', 'ao-phong-gucci.jpg', 1000000, 0, 1, 0, 0, '', '', 0, NULL);
+(95, 'áo phông', 'p-01', 'aosomi.jpg', 1000000, 1000000, 1, 26, 15, '1', '', 0, NULL),
+(118, 'a', '1', 'ao-phong-gucci.jpg', 10000, 10, 2, 30, 19, '1', 'a', 0, NULL),
+(119, 'ab', 'a', 'ao-khoac.jpg', 10000, 1, 2, 27, 16, '1', 'a', 0, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -221,7 +220,7 @@ ALTER TABLE `cart`
 -- Chỉ mục cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idcart`);
 
 --
 -- Chỉ mục cho bảng `dangky`
@@ -267,7 +266,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idcart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT cho bảng `dangky`
@@ -279,19 +278,19 @@ ALTER TABLE `dangky`
 -- AUTO_INCREMENT cho bảng `hieusp`
 --
 ALTER TABLE `hieusp`
-  MODIFY `idhieusp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idhieusp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisp`
 --
 ALTER TABLE `loaisp`
-  MODIFY `idloaisp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idloaisp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `idsanpham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `idsanpham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
