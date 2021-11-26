@@ -15,6 +15,7 @@
     <div id="wrapper">
         <form action="" id="form-login">
             <h1 class="form-heading">Đăng nhập</h1>
+            
             <div class="form-group">
                 <i class="fas fa-user"></i>
                 <input type="text" class="form-input" placeholder="Tên đăng nhập">
@@ -25,6 +26,7 @@
                 <div id="eye"><i class="far fa-eye"></i></div>
             </div>
             <input type="submit" class="form-submit" value="Đăng nhập">
+            <a href="register.php">Đăng Ký</a>
         </form>
     </div>
 </body>

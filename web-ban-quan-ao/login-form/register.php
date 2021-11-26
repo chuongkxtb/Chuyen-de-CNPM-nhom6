@@ -42,6 +42,8 @@
                 <input type="text" class="form-input" placeholder="Địa chỉ">
             </div>
             <input type="submit" class="form-submit" value="Đăng ký">
+            <a href="login.php">Đăng Nhập</a>
+
         </form>
     </div>
 </body>
