@@ -1,7 +1,7 @@
 
 <div class="header_bottom">
 		
-		
+		<div style="margin-top: 10px;">
 		   <!-- FlexSlider -->
              
 			<section class="slider">
@@ -15,6 +15,6 @@
 				  </div>
 	      </section>
 <!-- FlexSlider -->
-	   
+		</div>
 	  <div class="clear"></div>
 </div>	

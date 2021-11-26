@@ -48,7 +48,7 @@ header("Cache-Control: max-age=2592000");
   <div class="wrap">
 		<div class="header_top">
 			<div class="logo">
-				<a href="index.php"><img src="images/logo.jpg" alt="" /></a>
+				<a href="index.php"><img style="height: 50px;" src="images/logo.jpg" alt="" /></a>
 			</div>
 			  <div class="header_top_right">
 			    <div class="search_box">
@@ -72,8 +72,53 @@ header("Cache-Control: max-age=2592000");
 <div class="menu">
 	<ul id="dc_mega-menu-orange" class="dc_mm-orange">
 	  <li><a href="index.php">Trang chủ</a></li>
-	  <li><a href="products.php">Sản phẩm</a> </li>
-	  <li><a href="topbrands.php">Thương hiệu</a></li>
+	  <li class="dropdown">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	        	Danh mục sản phẩm
+	        <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	        	<?php
+	        	$cate = $cat->show_category();
+	        	if($cate){
+	      			while($result_new = $cate->fetch_assoc()){
+
+	      		?>
+	        	
+	          <li>
+
+	          	<a href="productbycat.php?catid=<?php echo $result_new['idloaisp'] ?>"><?php echo $result_new['tenloaisp'] ?></a>
+	          </li>
+	          <?php
+	          	}
+	          } 
+	          ?>
+
+	        </ul>
+
+	      </li>
+		  <li class="dropdown">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	        	Thương hiệu
+	        <span class="caret"></span></a>
+	         <ul class="dropdown-menu">
+	        	<?php
+	        	$brand = $br->show_brand_home();
+	        	if($brand){
+	      			while($result_new = $brand->fetch_assoc()){
+
+	      		?>
+	        	
+	          <li>
+
+	          	<a href="topbrands.php?brandid=<?php echo $result_new['idhieusp'] ?>"><?php echo $result_new['tenhieusp'] ?></a>
+	          </li>
+	          <?php
+	          	}
+	          } 
+	          ?>
+
+	        </ul>
+	    </li>
 	  <li><a href="cart.php">Giỏ Hàng</a></li>
 	 
 	  <div class="clear"></div>

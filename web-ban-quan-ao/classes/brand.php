@@ -50,6 +50,11 @@
             $result = $this->db->select($query);
             return $result;
         }
+        public function show_brand_home(){
+			$query = "SELECT * FROM hieusp order by idhieusp desc";
+			$result = $this->db->select($query);
+			return $result;
+		}
         public function update_brand($namebr,$status,$id){
             $namebr = $this->fm->validation($namebr);
             $status = $this->fm->validation($status);
@@ -79,6 +84,12 @@
         public function delete_brand($id){
             $query = "DELETE FROM hieusp WHERE idhieusp='$id'";
             $result = $this->db->delete($query);
+            return $result;
+        }
+        public function product_brand($id){
+            $query = "SELECT sanpham.*,hieusp.*
+            FROM hieusp INNER JOIN sanpham ON sanpham.idhieusp=hieusp.idhieusp  WHERE hieusp.idhieusp='$id'";
+            $result = $this->db->select($query);
             return $result;
         }
     }

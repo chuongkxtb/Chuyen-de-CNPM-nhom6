@@ -65,9 +65,9 @@
   <td><?php echo $result['tenhieusp'] ?></td> 
   <td><?php
 									if ($result['tinhtrang'] == 1) {
-										echo 'Kích hoạt';
+										echo 'Đặc trưng';
 									} else {
-										echo 'Không kích hoạt';
+										echo 'Không Đặc trưng';
 									}
 									?></td>
                   <td><?php echo $fm->textShorten($result['noidung'],100) ?></td> 

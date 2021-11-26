@@ -3,10 +3,10 @@
 	
 ?>
 <?php
-if (!isset($_GET['idlsp']) || $_GET['idlsp'] == NULL) {
+if (!isset($_GET['catid']) || $_GET['catid'] == NULL) {
 	echo "<script>window.location = '404.php'</script>";
   } else {
-	$id = $_GET['idlsp'];
+	$id = $_GET['catid'];
   }
 ?>
  <div class="main">
@@ -35,6 +35,8 @@ if (!isset($_GET['idlsp']) || $_GET['idlsp'] == NULL) {
 				
 				<?php
 					}
+				}else{
+					echo 'Danh mục hiện tại chưa có sản phẩm';
 				}
 				?>	
 

@@ -1,6 +1,6 @@
 
     <!-- begin footer -->
-   <div class="footer">
+   <div class="footer" >
    	  <div class="wrapper">	
 	     <div class="section group">
 				<div class="col_1_of_4 span_1_of_4">
