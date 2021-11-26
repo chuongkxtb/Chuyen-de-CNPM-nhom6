@@ -80,5 +80,23 @@
             $result = $this->db->delete($query);
             return $result;
         }
+        public function product_cat($id){
+            $query = "SELECT sanpham.*,loaisp.*
+            FROM loaisp INNER JOIN sanpham ON sanpham.idloaisp=loaisp.idloaisp  WHERE loaisp.idloaisp='$id'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+        public function products_cat1(){
+            $query = "SELECT sanpham.*,loaisp.*
+            FROM loaisp INNER JOIN sanpham ON sanpham.idloaisp=loaisp.idloaisp  WHERE loaisp.idloaisp='26' ";
+            $result = $this->db->select($query);
+            return $result;
+        }
+        public function products_cat2(){
+            $query = "SELECT sanpham.*,loaisp.*
+            FROM loaisp INNER JOIN sanpham ON sanpham.idloaisp=loaisp.idloaisp  WHERE loaisp.idloaisp='27' ";
+            $result = $this->db->select($query);
+            return $result;
+        }
     }
 ?>

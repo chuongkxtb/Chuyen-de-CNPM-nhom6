@@ -1,26 +1,42 @@
 <?php
 	include 'inc/header.php';
-	include 'inc/slider.php';
+	
 ?>
-
+<?php
+if (!isset($_GET['idlsp']) || $_GET['idlsp'] == NULL) {
+	echo "<script>window.location = '404.php'</script>";
+  } else {
+	$id = $_GET['idlsp'];
+  }
+?>
  <div class="main">
     <div class="content">
     	<div class="content_top">
     		<div class="heading">
-    		<h3>Latest from Iphone</h3>
+    		<h3>Danh mục <?php $pd_cat = $cat->product_cat($id)->fetch_assoc(); echo $pd_cat['tenloaisp']?> gồm các sản phẩm :</h3>
     		</div>
     		<div class="clear"></div>
     	</div>
 	      <div class="section group">
+		  <?php
+			$pd_cat = $cat->product_cat($id);
+			if($pd_cat){
+				while($result = $pd_cat->fetch_assoc()){
+
+			
+		?>
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview-3.php"><img src="images/feature-pic1.png" alt="" /></a>
-					 <h2>Lorem Ipsum is simply </h2>
-					 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-					 <p><span class="price">$505.22</span></p>
-				     <div class="button"><span><a href="details.php" class="details">Details</a></span></div>
+					 <a href="details.php"><img src="images/<?php echo $result['hinhanh']?>" alt="" /></a>
+					 <h2><?php echo $result['tensp']?> </h2>
+					 <p><?php echo $fm->textShorten($result['noidung'],20)?></p>
+					 <p><span class="price"><?php echo $result['giadexuat']?></span></p>
+				     <div class="button"><span><a href="details.php?idsp=<?php echo $result['idsanpham']?>" class="details">Details</a></span></div>
 				</div>
 				
-			</div>
+				<?php
+					}
+				}
+				?>	
 
 	
 	

@@ -56,17 +56,17 @@
 			?>
 	</div>
 				<div class="rightsidebar span_3_of_1">
-					<h2>CATEGORIES</h2>
+					<h2>Danh mục sản phẩm</h2>
 					<ul>
 						<?php
-							$cat_show = $cat->show_category();
-							if($cat_show){
-								while($result_cat=$cat_show->fetch_assoc())
+							$show = $cat->show_category();
+							if($show){
+								while($result_cat=$show->fetch_assoc())
 								{
 
 							
 						?>
-						<li><a href="productbycat.php"><?php echo $result_cat['tenloaisp']?></a></li>
+						<li><a href="productbycat.php?idlsp=<?php echo $result_cat['idloaisp']?>"><?php echo $result_cat['tenloaisp']?></a></li>
 						<?php
 								}
 							}
