@@ -5,9 +5,7 @@
 ?>
 
 <?php
-	/**
-	 * 
-	 */
+
 	class customer
 	{
 		private $db;
@@ -28,7 +26,7 @@
 			$dienthoai = mysqli_real_escape_string($this->db->link, $data['dienthoai']);
 			$matkhau = mysqli_real_escape_string($this->db->link, md5($data['matkhau']));
 			if($tenkhachhang==""  || $email=="" || $diachinhan==""  || $dienthoai =="" || $matkhau ==""){
-				$alert = "<span style ='color:red; font-size: 20px;'>Fields must be not empty</span>";
+				$alert = "<span style ='color:red; font-size: 20px;'>Không được để trống</span>";
 				return $alert;
 			}else{
 				$check_email = "SELECT * FROM dangky WHERE email='$email' LIMIT 1";
@@ -54,7 +52,7 @@
 			$tenkhachhang = mysqli_real_escape_string($this->db->link, $data['tenkhachhang']);
 			$matkhau = mysqli_real_escape_string($this->db->link, md5($data['matkhau']));
 			if($tenkhachhang=="" || $matkhau==""){
-				$alert = "<span style ='color:red; font-size: 15px;'>Không được để trống email vs mật khẩu</span>";
+				$alert = "<span style ='color:red; font-size: 15px;'>Không được để trống tên đăng nhập vs mật khẩu</span>";
 				return $alert;
 			}else{
 				$check_login = "SELECT * FROM dangky WHERE tenkhachhang='$tenkhachhang' AND matkhau='$matkhau'";
@@ -70,7 +68,7 @@
                     return $alert;
 				
 				}else{
-					$alert = "<span style ='color:red; font-size: 20px;'>email hoặc matkhau không đúng</span>";
+					$alert = "<span style ='color:red; font-size: 20px;'>Tên đăng nhập hoặc mật khẩu không đúng</span>";
 					return $alert;
 				}
 			}
