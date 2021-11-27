@@ -15,6 +15,7 @@ Session::init();
    $br = new brand();
    $pd = new product();
    $ct = new cart();
+   $cs = new customer();
 ?>
 <?php
 header("Cache-Control: no-cache, must-revalidate");
@@ -64,7 +65,26 @@ header("Cache-Control: max-age=2592000");
 							</a>
 						</div>
 			      </div>
-		   <div class="login"><a href="login-form/login.php">Login</a></div>
+				  <?php 
+				if(isset($_GET['customer_id'])){
+					$customer_id = $_GET['customer_id'];
+					
+					Session::destroy();
+				}
+			?>
+		   <div class="login">
+		   <?php
+			$login_check = Session::get('customer_login'); 
+			if($login_check==false){
+				echo '<a href="login.php">Đăng nhập</a></div>';
+
+			}else{
+				echo '<a href="?customer_id='.Session::get('customer_id').'">Đăng xuất</a></div>';
+			
+
+			}
+			?>	   
+		 
 		 <div class="clear"></div>
 	 </div>
 	 <div class="clear"></div>
