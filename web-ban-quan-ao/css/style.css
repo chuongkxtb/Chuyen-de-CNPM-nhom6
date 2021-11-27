@@ -652,6 +652,15 @@ p.note{
 	color: #CC3636;
 	margin-left:15px;
 }
+.images_1_of_4>a {
+	display: block;
+	max-width: 246px;
+	min-height: 250px;
+}
+.images_1_of_4 a img {
+	max-width: 100%;
+	height: auto;
+}
 .images_1_of_4 .button {
   float: left;
   line-height: 1.9em;
