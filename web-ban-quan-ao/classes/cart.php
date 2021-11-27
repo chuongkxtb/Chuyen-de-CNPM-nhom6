@@ -24,7 +24,12 @@
             $quantity= mysqli_real_escape_string($this->db->link,$quantity);
             $sid = session_id();
 
-
+            $check_cart = "SELECT * FROM cart_detail WHERE idsanpham = '$id' AND sId ='$sid'";
+			$result_check_cart = $this->db->select($check_cart);
+			if($result_check_cart){
+				$msg = "<span style ='color:red; font-size: 20px;'>Sản phẩm đã được thêm vào</span>";
+				return $msg;
+			}else{
             $query = "SELECT * FROM sanpham WHERE idsanpham='$id'";
             $result = $this->db->select($query)->fetch_assoc();
 
@@ -42,6 +47,7 @@
                 }
 
             }
+        }
             public function cart_show(){
                 $sid = session_id();
                 $query = "SELECT * From cart_detail where sid='$sid'";
@@ -50,7 +56,7 @@
             }
             public function check_cart(){
                 $sId = session_id();
-                $query = "SELECT * FROM cart_detail WHERE sId = '$sId'";
+                $query = "SELECT * FROM cart_detail WHERE sid = '$sId'";
                 $result = $this->db->select($query);
                 return $result;
             }
@@ -71,9 +77,9 @@
                 }
                
         }
-        public function del_product_cart($cartid){
-			$cartid = mysqli_real_escape_string($this->db->link, $cartid);
-			$query = "DELETE FROM cart_detail WHERE idcart = '$cartid'";
+        public function del_product_cart($idcart){
+			$idcart = mysqli_real_escape_string($this->db->link, $idcart);
+			$query = "DELETE FROM cart_detail WHERE idcart = '$idcart'";
 			$result = $this->db->delete($query);
 			if($result){
 				$msg = "<span class='error'>Xóa sản phẩm thành công</span>";

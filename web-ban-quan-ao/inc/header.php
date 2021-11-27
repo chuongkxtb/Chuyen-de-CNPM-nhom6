@@ -60,9 +60,21 @@ header("Cache-Control: max-age=2592000");
 			    </div>
 			    <div class="shopping_cart">
 					<div class="cart">
-						<a href="#" title="View my shopping cart" rel="nofollow">
+						<a href="cart.php" title="View my shopping cart" rel="nofollow">
 								<span class="cart_title">Cart</span>
-								<span class="no_product"></span>
+								<span class="no_product">
+								<?php
+									$check_cart = $ct->check_cart();
+										if($check_cart){
+											$sum = Session::get("sum");
+											$qty = Session::get("qty");
+											echo $fm->format_currency($sum).' '.'đ'.'-'.'Qty:'.$qty ;
+											}else{
+											echo 'Empty';
+										}
+
+									?>
+								</span>
 							</a>
 						</div>
 			      </div>

@@ -3,16 +3,19 @@
 	
  ?>
  <?php
-if(isset($_GET['cartid'])){
-	$cartid = $_GET['cartid']; 
-	$delcart = $ct->del_product_cart($cartid);
+if(isset($_GET['idcart'])){
+	$idcart = $_GET['idcart']; 
+	$delcart = $ct->del_product_cart($idcart);
 }
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST'&& isset($_POST['submit'])) {
  
 	$quantity = $_POST['quantity'];
 	$idcart = $_POST['idcart'];
 	  
 	$update_quantity = $ct->cart_update($idcart,$quantity);
+	if($quantity<=0){
+		$delcart = $ct->del_product_cart($idcart);
+	}
 }
 ?>
 <?php
@@ -44,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								if($cart_sh){
 								   $tong_tien = 0;
 								   $vat = 0;
+								   $qty=0;
 									while($result = $cart_sh->fetch_assoc()){
 
 								
@@ -63,14 +67,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						    	$t = $result["price"]*$result["quantity"];
 
 								echo $t; ?></td>
-								<td><a onclick="return confirm('Bạn có muốn xóa không?');" href="?cartid=<?php echo $result['idcart'] ?>">Xóa</a></td>
+								<td><a onclick="return confirm('Bạn có muốn xóa không?');" href="?idcart=<?php echo $result['idcart'] ?>">Xóa</a></td>
 							</tr>
 							
 							<?php
 							$t = $result["price"]*$result["quantity"];
 							$tong_tien += $t;
-							$vat = $tong_tien*0.1;
-							$grand_total = $tong_tien + $vat;
+							
+							
+							$qty = $qty + $result['quantity'];
 								}
 							}
 							?>
@@ -82,8 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<table style="float:right;text-align:left;" width="40%">
 							<tr>
 								<th>Sub Total : </th>
-								<td><?php 
-								echo $tong_tien; ?></td>
+								<td>
+								<?php 
+
+									echo $fm->format_currency($tong_tien)." "."VNĐ";
+									Session::set('sum',$tong_tien);
+									Session::set('qty',$qty);
+									?></td>
 							</tr>
 							<tr>
 								<th>VAT : </th>
@@ -92,7 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<tr>
 								<th>Grand Total :</th>
 								<td><?php 
-			
+							$vat = $tong_tien*0.1;
+							$grand_total = $tong_tien + $vat;
 							echo $grand_total; ?></td>
 							</tr>
 					   </table>
