@@ -17,6 +17,13 @@
             $this->fm = new Format();
 
         }
+        public function search_product($tukhoa){
+			$tukhoa = $this->fm->validation($tukhoa);
+			$query = "SELECT * FROM sanpham WHERE tensp LIKE '%$tukhoa%'";
+			$result = $this->db->select($query);
+			return $result;
+
+		}
         public function insert_product($data,$files){
             
 
