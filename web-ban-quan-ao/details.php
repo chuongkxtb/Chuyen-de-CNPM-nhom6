@@ -22,8 +22,9 @@
 		<?php
 			$pd_detail = $pd->product_detail($id);
 			if($pd_detail){
+				$gia =0;
 				while($result_detail = $pd_detail->fetch_assoc()){
-
+				$gia = $result_detail["giadexuat"] -$result_detail["giagiam"];
 			
 		?>
 			
@@ -44,7 +45,7 @@
 					<h2><?php echo $result_detail['tensp']?></h2>
 					<p><?php echo $fm->textShorten($result_detail['noidung'],100)?></p>					
 					<div class="price">
-						<p>Giá: <span><?php echo $result_detail['giadexuat']?></span></p>
+						<p>Giá: <span><?php echo $gia?></span></p>
 						<p>Danh mục: <span><?php echo $result_detail['tenloaisp']?></span></p>
 						<p>Thương hiệu:<span><?php echo $result_detail['tenhieusp']?></span></p>
 					</div>

@@ -27,13 +27,15 @@
 	      	<?php
 	      	
 	      	 if($search_product==true && $tukhoa != ""){
+				   $gia = 0;
 	      	 	while($result = $search_product->fetch_assoc()){
+					   $gia = $result['giadexuat'] - $result['giagiam'];
 	      	?>
 				<div class="grid_1_of_4 images_1_of_4">
 					 <a href="details.php"><img src="images/<?php echo $result['hinhanh']?>" alt="" /></a>
 					 <h2><?php echo $result['tensp']?> </h2>
 					 <p><?php echo $fm->textShorten($result['noidung'],20)?></p>
-					 <p><span class="price"><?php echo $result['giadexuat']?></span></p>
+					 <p><span class="price"><?php echo $gia?></span></p>
 				     <div class="button"><span><a href="details.php?idsp=<?php echo $result['idsanpham']?>" class="details">Details</a></span></div>
 				</div>
 			<?php

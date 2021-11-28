@@ -15,7 +15,9 @@
 	<?php
 	     	 $name_brand = $br->get_name_by_brand($id);
 	      	 if($name_brand){
+			
 	      	 	while($result_name = $name_brand->fetch_assoc()){
+					  
 	      	?>
     	<div class="content_top">
     		<div class="heading">
@@ -31,15 +33,16 @@
 		  <?php
 			$pd_cat = $br->product_brand($id);
 			if($pd_cat){
+				$gia =0;
 				while($result = $pd_cat->fetch_assoc()){
-
+					$gia = $result['giadexuat'] - $result['giagiam'];
 			
 		?>
 				<div class="grid_1_of_4 images_1_of_4">
 					 <a href="details.php"><img src="images/<?php echo $result['hinhanh']?>" alt="" /></a>
 					 <h2><?php echo $result['tensp']?> </h2>
 					 <p><?php echo $fm->textShorten($result['noidung'],20)?></p>
-					 <p><span class="price"><?php echo $result['giadexuat']?></span></p>
+					 <p><span class="price"><?php echo $gia?></span></p>
 				     <div class="button"><span><a href="details.php?idsp=<?php echo $result['idsanpham']?>" class="details">Details</a></span></div>
 				</div>
 				

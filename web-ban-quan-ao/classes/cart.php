@@ -35,7 +35,7 @@
 
             $namesp = $result["tensp"];
             $image = $result["hinhanh"];
-            $gia = $result["giadexuat"];
+            $gia = $result["giadexuat"] - $result["giagiam"];
 
             $query_insert = "INSERT INTO cart_detail(idsanpham,sid,name_sp,quantity,image,price) 
             VALUES ('$id','$sid','$namesp','$quantity','$image','$gia')";
