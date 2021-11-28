@@ -50,6 +50,13 @@
             $result = $this->db->select($query);
             return $result;
         }
+
+        public function get_name_by_brand($id){
+			$query = "SELECT sanpham.*,hieusp.tenhieusp,hieusp.idhieusp FROM sanpham,hieusp
+             WHERE sanpham.idhieusp=hieusp.idhieusp AND hieusp.idhieusp ='$id' LIMIT 1";
+			$result = $this->db->select($query);
+			return $result;
+		}
         public function show_brand_home(){
 			$query = "SELECT * FROM hieusp order by idhieusp desc";
 			$result = $this->db->select($query);

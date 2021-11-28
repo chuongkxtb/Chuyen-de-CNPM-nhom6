@@ -11,12 +11,20 @@ if (!isset($_GET['catid']) || $_GET['catid'] == NULL) {
 ?>
  <div class="main">
     <div class="content">
+	<?php
+	     	 $name_cat = $cat->get_name_by_cat($id);
+	      	 if($name_cat){
+	      	 	while($result_name = $name_cat->fetch_assoc()){
+	      	?>
     	<div class="content_top">
     		<div class="heading">
-    		<h3>Danh mục <?php $pd_cat = $cat->product_cat($id)->fetch_assoc(); echo $pd_cat['tenloaisp']?> gồm các sản phẩm :</h3>
+    		<h3>Danh mục <?php echo $result_name['tenloaisp']?> gồm các sản phẩm :</h3>
     		</div>
     		<div class="clear"></div>
     	</div>
+		<?php
+			}}
+			?>
 	      <div class="section group">
 		  <?php
 			$pd_cat = $cat->product_cat($id);

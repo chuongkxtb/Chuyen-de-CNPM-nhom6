@@ -75,6 +75,12 @@
                 }
             }
         }
+        public function get_name_by_cat($id){
+			$query = "SELECT sanpham.*,loaisp.idloaisp,loaisp.tenloaisp FROM sanpham,loaisp 
+            WHERE sanpham.idloaisp=loaisp.idloaisp AND sanpham.idloaisp ='$id' LIMIT 1";
+			$result = $this->db->select($query);
+			return $result;
+		}
         public function delete_category($id){
             $query = "DELETE FROM loaisp WHERE idloaisp='$id'";
             $result = $this->db->delete($query);

@@ -12,12 +12,21 @@
 ?>
  <div class="main">
     <div class="content">
+	<?php
+	     	 $name_brand = $br->get_name_by_brand($id);
+	      	 if($name_brand){
+	      	 	while($result_name = $name_brand->fetch_assoc()){
+	      	?>
     	<div class="content_top">
     		<div class="heading">
-    		<h3>Thương hiệu <?php $pd_cat = $br->product_brand($id)->fetch_assoc(); echo $pd_cat['tenhieusp']?> gồm các sản phẩm :</h3>
+    		<h3>Thương hiệu <?php echo $result_name['tenhieusp']?> gồm các sản phẩm :</h3>
     		</div>
     		<div class="clear"></div>
     	</div>
+		<?php
+			}
+		}
+			?>
 	      <div class="section group">
 		  <?php
 			$pd_cat = $br->product_brand($id);
