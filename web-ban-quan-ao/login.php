@@ -37,7 +37,7 @@
             
             <div class="form-group">
                 <i class="fas fa-user"></i>
-                <input type="text" name="tenkhachhang" class="form-input" placeholder="email">
+                <input type="text" name="tenkhachhang" class="form-input" placeholder="Tên đăng nhập">
             </div>
             <div class="form-group">
                 <i class="fas fa-key"></i>

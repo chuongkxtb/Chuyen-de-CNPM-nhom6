@@ -7,7 +7,7 @@
 <?php
 
  $pd = new product();
- 
+ $fm = new Format();
 	if(isset($_GET['delid']))
   {
     $id = $_GET['delid'];
@@ -21,7 +21,12 @@
     <div class="box round first grid">
         <h2>Danh Sách Sản Phẩm</h2>
         <div class="block">
-            <table class="data display datatable" id="example">
+        <?php
+        if(isset($deletepd)){
+        	echo $deletepd;
+        }
+        ?> 
+            <table class="data display datatable" >
 			<thead>
 			<tr>
     <td>ID</td>
@@ -41,8 +46,8 @@
 			</thead>
 			<tbody>
 			<?php
-      $pd =  new product();
-      $fm = new Format();
+
+ 
       $show_product = $pd->show_product();
       if($show_product)
       {
@@ -51,12 +56,13 @@
    
 
 
-  ?> <tr>
+      ?> 
+  <tr class="odd gradeX">
 
   <td><?php  echo $result['idsanpham']?></td>
   <td><?php echo $result['tensp'] ?></td>
   <td><?php echo $result['masp'] ?></td>
-  <td><img src="uploads/<?php echo $result['hinhanh'] ?>" width="80" height="80" />
+  <td><img src="uploads/<?php echo $result['hinhanh'] ?>" width="80" />
   </td>
   <td><?php echo number_format($result['giadexuat']) ?></td>
   <td><?php echo number_format($result['giagiam']) ?></td>
@@ -65,13 +71,17 @@
   <td><?php echo $result['tenhieusp'] ?></td> 
   <td><?php
 									if ($result['tinhtrang'] == 1) {
-										echo 'Đặc trưng';
+										echo 'Nổi bật';
 									} else {
-										echo 'Không Đặc trưng';
+										echo 'Không Nổi bật';
 									}
 									?></td>
-                  <td><?php echo $fm->textShorten($result['noidung'],100) ?></td> 
-   <td><a href="productedit.php?idsanpham=<?php echo $result['idsanpham'] ?>">Edit</a> || <a onclick="return confirm('you are want to delete')" href="?delid=<?php echo $result['idsanpham'] ?>">Delete</a> </td>
+    <td><?php echo $fm->textShorten($result['noidung'],100) ?></td> 
+    
+   <td>
+     <a href="productedit.php?idsanpham=<?php echo $result['idsanpham'] ?>">Edit</a> || 
+   <a onclick="return confirm('you are want to delete')" href="?delid=<?php echo $result['idsanpham'] ?>">Delete</a> 
+  </td>
 </tr>
 				<?php
 						}

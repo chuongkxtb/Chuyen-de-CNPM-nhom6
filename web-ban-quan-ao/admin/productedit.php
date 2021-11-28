@@ -5,33 +5,32 @@
 <?php include_once '../classes/product.php' ?>
 
 <?php
-
+$pd = new product();
 if (!isset($_GET['idsanpham']) || $_GET['idsanpham'] == NULL) {
   echo "<script>window.location = 'productedit.php'</script>";
 } else {
   $id = $_GET['idsanpham'];
 }
-$pd = new product();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $namecat = $_POST['tensp'];
-  $status = $_POST['tinhtrang'];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+
 
   $updatepd = $pd->update_product($_POST, $_FILES, $id);
 }
 ?>
 <div class="grid_10">
   <div class="box round first grid">
-    <h2>Thêm sản phẩm mới</h2>
+    <h2>Sửa sản phẩm</h2>
     <div class="block">
       <?php
       if (isset($updatepd)) {
-        return $updatepd;
+        echo $updatepd;
       }
       ?>
       <?Php
       $get_catname = $pd->getcatbyid($id);
       if ($get_catname) {
-        while ($result = $get_catname->fetch_assoc()) {
+        while ($result_pd = $get_catname->fetch_assoc()) {
 
       ?>
 
@@ -43,36 +42,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </tr>
               <tr>
                 <td width="97">Tên sản phẫm</td>
-                <td width="87"><input type="text" name="tensp" value="<?php echo $result['tensp'] ?>"></td>
+                <td width="87"><input type="text" name="tensp" value="<?php echo $result_pd['tensp'] ?>"></td>
               </tr>
               <tr>
                 <td>Mã SP</td>
-                <td><input type="text" name="masp" value="<?php echo $result['masp'] ?>"></td>
+                <td><input type="text" name="masp" value="<?php echo $result_pd['masp'] ?>"></td>
               </tr>
               <tr>
                 <td>Hình ảnh</td>
-                <td><input type="file" name="hinhanh" /><img src="uploads/<?php echo $result['hinhanh'] ?>" width="80" height="80"></td>
+                <td><input type="file" name="hinhanh" /><img src="uploads/<?php echo $result_pd['hinhanh'] ?>" width="80" height="80"></td>
               </tr>
               <tr>
                 <td>Giá đề xuất</td>
-                <td><input type="text" name="giadexuat" value="<?php echo $result['giadexuat'] ?>"></td>
+                <td><input type="text" name="giadexuat" value="<?php echo $result_pd['giadexuat'] ?>"></td>
+              </tr>
+              <tr>
+                <td>Giá giảm</td>
+                <td><input type="text" name="giagiam" value="<?php echo $result_pd['giagiam'] ?>"></td>
               </tr>
               
               <tr>
-                <td>Nội dung</td>
-                <td><textarea name="noidung" cols="40" rows="10"><?php echo $result['noidung'] ?></textarea></td>
-              </tr>
+                    <td style="vertical-align: top; padding-top: 9px;">
+                        <label>Nội dung</label>
+                    </td>
+                    <td>
+                        <textarea name="noidung" class="tinymce"><?php echo $result_pd['noidung'] ?></textarea>
+                    </td>
+                </tr>
               <tr>
                 <td>Số lượng</td>
-                <td><input type="text" name="soluong" value="<?php echo $result['soluong'] ?>"></td>
+                <td><input type="text" name="soluong" value="<?php echo $result_pd['soluong'] ?>"></td>
               </tr>
               <tr>
                 <td>
-                  <label>Category</label>
+                  <label>Danh Mục</label>
                 </td>
                 <td>
                   <select id="select" name="loaisp">
-                    <option>------Select Category------</option>
+                    <option>------Chọn Danh Mục------</option>
                     <?php
                     $cat = new category();
                     $catlist = $cat->show_category();
@@ -80,7 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($catlist) {
                       while ($result = $catlist->fetch_assoc()) {
                     ?>
-                        <option value="<?php echo $result['idloaisp'] ?>"><?php echo $result['tenloaisp'] ?></option>
+                        <option 
+                        <?php
+                            if($result['idloaisp']==$result_pd['idloaisp']){ echo 'selected';  }
+                            ?>
+                        value="<?php echo $result['idloaisp'] ?>"><?php echo $result['tenloaisp'] ?></option>
                     <?php
                       }
                     }
@@ -91,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </tr>
               <tr>
                 <td>
-                  <label>Brand</label>
+                  <label>Thương hiệu</label>
                 </td>
                 <td>
-                  <select id="select" name="brand">
-                    <option>------Select Brand------</option>
+                  <select id="select" name="hieusp">
+                    <option>------Chọn Thương Hiệu------</option>
                     <?php
                     $brand = new brand();
                     $brandlist = $brand->show_brand();
@@ -103,7 +114,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($brandlist) {
                       while ($result = $brandlist->fetch_assoc()) {
                     ?>
-                        <option value="<?php echo $result['idhieusp'] ?>"><?php echo $result['tenhieusp'] ?></option>
+                        <option 
+                        <?php
+                            if($result['idhieusp']==$result_pd['idhieusp']){ echo 'selected';  }
+                            ?>
+                        value="<?php echo $result['idhieusp'] ?>"><?php echo $result['tenhieusp'] ?></option>
                     <?php
                       }
                     }
@@ -113,23 +128,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </tr>
               <tr>
                 <td>Tình trạng</td>
-                <td><select name="tinhtrang">
-
-                    <option value="1">Kích hoạt</option>
-                    <option value="2">Không kích hoạt</option>
-                  </select></td>
+                <td><select id="select" name="tinhtrang">
+                            <option>Tinh trang</option>
+                            <?php
+                            if($result['tinhtrang']==1){
+                            ?>
+                            <option selected value="1">Nổi bật</option>
+                            <option value="0">không Nổi bật</option>
+                            <?php
+                        }else{
+                            ?>
+                            <option value="1">Nổi bật</option>
+                            <option selected value="0">không Nổi bật</option>
+                            <?php
+                            }
+                            ?>
+                        </select></td>
               </tr>
               <tr>
-                <td colspan="2">
-                  <div align="center">
-                    <input type="submit" name="them" value="Update">
-                  </div>
+              <td></td>
+                <td >
+                
+                    <input type="submit" name="submit" value="Sửa">
+             
                 </td>
               </tr>
             </table>
           </form>
 
+          <?php
+        }
 
+        }
+            ?>
     </div>
   </div>
 </div>
@@ -147,7 +178,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php include 'inc/footer.php'; ?>
 
 
-<?php
-        }
-      }
-?>

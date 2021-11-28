@@ -101,10 +101,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </td>
           </tr>
           <tr>
-            <td>Nội dung</td>
-            <td><textarea name="noidung" cols="40" rows="10"></textarea></td>
-          </tr>
-          <tr>
+                    <td style="vertical-align: top; padding-top: 9px;">
+                        <label>Nội dung</label>
+                    </td>
+                    <td>
+                        <textarea name="noidung" class="tinymce"><?php echo $result['noidung'] ?></textarea>
+                    </td>
+                </tr>
+   
           <tr>
             <td>Tình trạng</td>
             <td><select name="tinhtrang">

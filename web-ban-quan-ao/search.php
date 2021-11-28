@@ -23,10 +23,10 @@
 
     	</div>
     	
-	      <div class="section group">
+	      <div class="section group" style="margin-top: 20px;">
 	      	<?php
 	      	
-	      	 if($search_product){
+	      	 if($search_product==true && $tukhoa != ""){
 	      	 	while($result = $search_product->fetch_assoc()){
 	      	?>
 				<div class="grid_1_of_4 images_1_of_4">
@@ -40,7 +40,7 @@
 			}
 
 		}else{
-			echo 'không tìm thấy';
+			echo "<span  style ='color:red; font-size: 20px; margin-left: 20px;'>Không tìm thấy sản phẩm nào</span>";
 		}
 			?>
 			</div>

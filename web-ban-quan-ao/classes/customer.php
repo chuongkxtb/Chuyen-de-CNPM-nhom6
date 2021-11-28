@@ -39,6 +39,7 @@
                     VALUES('$tenkhachhang','$email','$diachinhan','$dienthoai','$matkhau')";
 					$result = $this->db->insert($query);
 					if($result){
+                  
 						$alert = "<span style ='color:green; font-size: 20px;'>Đăng ký thành công</span>";
 						return $alert;
 					}else{
